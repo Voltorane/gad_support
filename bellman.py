@@ -28,7 +28,7 @@ class Graph:
 
         for k in range(self.M):
 
-            print("{0}\t\t{1}".format(k, distance[k]))
+            print("{0}\t\t{1}".format(chr(k+97), distance[k]))
 
 
 
@@ -43,7 +43,6 @@ class Graph:
 
 
         for _ in range(self.M - 1):
-
             for a, b, c in self.graph:
                 if isinstance(a, str):
                     a = ord(a) % 97
@@ -53,6 +52,8 @@ class Graph:
                     distance[b] = distance[a] + c
                     print(f"{self.counter}) ({chr(a+97)}, {chr(b+97)}) | d = {distance[b]} | p = {chr(a+97)}")
                     self.counter += 1
+            print(f'{self.counter})')
+            self.counter += 1
 
 
 
@@ -84,4 +85,5 @@ g.add_edge("d", "e", 2)
 g.add_edge("e", "f", 2)
 g.add_edge("f", "e", -3)
 g.add_edge("f", "b", -7)
-g.bellman_ford(0)
+start_node = "a"
+g.bellman_ford(ord(start_node)%97)
